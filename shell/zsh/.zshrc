@@ -21,7 +21,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 # TODO:
 # download JetBrains Mono Nerd fonts
-# setup alacritty
 # setup tmux
 
 # Add Powerlevel10k
@@ -30,11 +29,17 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Add syntax highlighting
+# Add plugin
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+
+# Add snippets
+zinit snippet OMZP::git 
+zinit snippet OMZP::sudo 
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::command-not-found
 
 # Setup emacs mode
 bindkey -e
@@ -45,9 +50,15 @@ bindkey '^[[1;5D' emacs-backward-word
 
 # Load autocompletions
 autoload -U compinit && compinit
+
+zinit cdreplay -q
+
+# Modify plugins
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Share history
 HISTSIZE=5000
@@ -67,6 +78,5 @@ setopt hist_find_no_dups
 alias ls='ls --color'
 
 # Shell integrations
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fzf --zsh)"
-
+eval "$(zoxide init --cmd cd zsh)"
