@@ -34,10 +34,11 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light redxtech/zsh-asdf-direnv
 
 # Add snippets
-zinit snippet OMZP::git 
-zinit snippet OMZP::sudo 
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
 
@@ -80,7 +81,6 @@ alias ls='ls --color'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-
 
 # Add more keybinds for delete, home, etc
 # create a zkbd compatible hash;
@@ -125,3 +125,7 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 
+# Import system specific config
+if [[ -e .zshrc_system ]]; then
+    source .zshrc_system
+fi
