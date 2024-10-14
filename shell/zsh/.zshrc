@@ -23,6 +23,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 # download JetBrains Mono Nerd fonts
 # setup tmux
 
+
 # Add Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
@@ -39,11 +40,20 @@ zinit light redxtech/zsh-asdf-direnv
 # Add snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
 
+# Add snippets for operating system
+os=$(cat /etc/os-release | grep -e '^ID=' | awk -F= '{print $2}')
+if [[ $os -eq "debian" ]]; then
+	zinit snippet OMZP::debian
+elif [[ $os -eq "arch" ]]; then
+	zinit snippet OMZP::archlinux
+fi
+
+
+
 # Setup emacs mode
-bindkey -e
+#bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[[1;5C' emacs-forward-word
