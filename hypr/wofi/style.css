@@ -1,0 +1,43 @@
+window {
+    background: #000000; /* Black background */
+    border: 2px solid #cca149; /* Dark gold border */
+    border-radius: 10px;
+    padding: 8px;
+}
+
+#input {
+    margin: 6px;
+    padding: 6px 10px;
+    border: 1px solid #4d3c1c;
+    border-radius: 6px;
+    background: #000000;
+    color: #dddddd; /* Light text */
+}
+
+#inner-box {
+    margin: 6px;
+    background: #000000;
+}
+
+#outer-box {
+    margin: 6px;
+    background: #000000;
+}
+
+#scroll {
+    margin: 4px;
+    background: #000000;
+}
+
+#entry {
+    padding: 6px 10px;
+    color: #dddddd;
+    background: #000000;
+    border-radius: 6px;
+}
+
+#entry:selected {
+    background: #4d3c1c; /* Dark gold highlight */
+    color: #ffffff;
+    border-radius: 6px;
+}
